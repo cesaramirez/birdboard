@@ -18,3 +18,5 @@ Route::get('/', function () {
 $router->get('/projects', 'ProjectsController@index')->name('projects.index');
 
 $router->post('/projects', 'ProjectsController@store')->name('projects.store');
+
+$router->get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
