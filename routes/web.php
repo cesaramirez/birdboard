@@ -18,6 +18,7 @@ $router->get('/', function () {
 $router->middleware('auth')
        ->group(function ($router) {
            $router->get('/projects', 'ProjectsController@index')->name('projects.index');
+           $router->get('/projects/create', 'ProjectsController@create')->name('projects.create');
            $router->post('/projects', 'ProjectsController@store')->name('projects.store');
            $router->get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
            $router->get('/home', 'HomeController@index')->name('home');
