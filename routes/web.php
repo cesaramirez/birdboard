@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+$router->get('/', function () {
     return view('welcome');
 });
 
-$router->get('/projects', 'ProjectsController@index')->name('projects.index');
-
-$router->post('/projects', 'ProjectsController@store')->name('projects.store')->middleware('auth');
-
-$router->get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
+$router->middleware('auth')
+       ->group(function ($router) {
+           $router->get('/projects', 'ProjectsController@index')->name('projects.index');
+           $router->post('/projects', 'ProjectsController@store')->name('projects.store');
+           $router->get('/projects/{project}', 'ProjectsController@show')->name('projects.show');
+           $router->get('/home', 'HomeController@index')->name('home');
+       });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
